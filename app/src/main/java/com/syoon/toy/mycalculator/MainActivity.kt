@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +25,8 @@ class MainActivity : AppCompatActivity() {
     private var btnPlus: Button? = null
     private var btnMulti: Button? = null
     private var btnDiv: Button? = null
+
+    val calculationList = listOf<Char>('+', '-', '/', '*')
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,9 +50,90 @@ class MainActivity : AppCompatActivity() {
         btnMulti = findViewById(R.id.btn_multiply)
         btnDiv = findViewById(R.id.btn_divide)
         btnEqual = findViewById(R.id.btn_equal)
+
+        initListener()
+        getCalculation()
+
     }
 
     private fun initListener() {
-        // tvInput?.append("1")
+        btnZero?.setOnClickListener {
+            tvInput?.append("0")
+        }
+        btnOne?.setOnClickListener {
+            tvInput?.append("1")
+        }
+        btnTwo?.setOnClickListener {
+            tvInput?.append("2")
+        }
+        btnThree?.setOnClickListener {
+            tvInput?.append("3")
+        }
+        btnFour?.setOnClickListener {
+            tvInput?.append("4")
+        }
+        btnFive?.setOnClickListener {
+            tvInput?.append("5")
+        }
+        btnSix?.setOnClickListener {
+            tvInput?.append("6")
+        }
+        btnSeven?.setOnClickListener {
+            tvInput?.append("7")
+        }
+        btnEight?.setOnClickListener {
+            tvInput?.append("8")
+        }
+        btnNine?.setOnClickListener {
+            tvInput?.append("9")
+        }
+
+        btnClr?.setOnClickListener {
+            tvInput?.text = ""
+        }
+
+    }
+
+    private fun getCalculation() {
+
+        btnPlus?.setOnClickListener {
+            if (tvInput?.text.toString() == "") {
+                Toast.makeText(this, "Input number first", Toast.LENGTH_SHORT ).show()
+            } else if (calculationList.contains(tvInput?.text.toString().last())) {
+                Toast.makeText(this, "Input number", Toast.LENGTH_SHORT ).show()
+            } else {
+                tvInput?.append("+")
+            }
+        }
+
+        btnSub?.setOnClickListener {
+            if (tvInput?.text.toString() == "") {
+                Toast.makeText(this, "Input number first", Toast.LENGTH_SHORT ).show()
+            } else if (calculationList.contains(tvInput?.text.toString().last())) {
+                Toast.makeText(this, "Input number", Toast.LENGTH_SHORT ).show()
+            } else {
+                tvInput?.append("-")
+            }
+        }
+
+        btnMulti?.setOnClickListener {
+            if (tvInput?.text.toString() == "") {
+                Toast.makeText(this, "Input number first", Toast.LENGTH_SHORT ).show()
+            } else if (calculationList.contains(tvInput?.text.toString().last())) {
+                Toast.makeText(this, "Input number", Toast.LENGTH_SHORT ).show()
+            } else {
+                tvInput?.append("*")
+            }
+        }
+
+        btnDiv?.setOnClickListener {
+            if (tvInput?.text.toString() == "") {
+                Toast.makeText(this, "Input number first", Toast.LENGTH_SHORT ).show()
+            } else if (calculationList.contains(tvInput?.text.toString().last())) {
+                Toast.makeText(this, "Input number", Toast.LENGTH_SHORT ).show()
+            } else {
+                tvInput?.append("/")
+            }
+        }
     }
 }
